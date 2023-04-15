@@ -1,0 +1,27 @@
+{% extends 'encyclopedia/layout.html' %}
+
+
+{% block title %}
+    {{ title }}
+{% endblock title %}
+    
+{% block body %}
+
+{% if messages %}
+
+{% for message in messages %}
+<div {% if message.tags %} class="alert alert-{{ message.tags }}" {% endif %} role="alert">{{ message }}</div>
+{% endfor %}
+
+{% endif %}
+
+    <h1>Create a new page</h1>
+    <div class="form_section">
+        <form action="{% url 'new' %}" method="post">
+            {% csrf_token %}
+            {{ form }}
+            <input type="submit">
+        </form>
+    </div>
+
+{% endblock body %}
